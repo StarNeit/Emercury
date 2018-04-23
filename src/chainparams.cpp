@@ -53,21 +53,15 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-            ( 0,   uint256("0x00000759bb3da130d7c9aedae170da8335f5a0d01a9007e4c8d3ccd08ace6a42") )
-            ( 175,   uint256("0x000000000002611e8e3c2e460e7fcd0a39ee210b9915fc76a5573a0704bb2b33") )
-            ( 2241,   uint256("0x69e2e47fb84085c4b82b6090f701c7ac03a4e510bd1f41cc072c33061cf83a0d") )
-            ( 6901,   uint256("0x0000000000034bab666179e364e0cce7c19eaa255f1e4afd2170356acfa1a3ac") )
-            ( 25318,   uint256("0x092a04ee669d2d2241aba0ec9dcecb548c9cea9ff114b0ee52cdc7ddac98a1f4") )
-            ( 97176,   uint256("0x000000000004e4aac7926e7dbd778f21b15b62f0e4c1d424ac9e5a9889c1724a") )
-            ( 122237,   uint256("0x10f6d17326a0c439f61a21c44a172885469bb60668a0d77be82eead7209183b0") )
-            ( 203690,   uint256("0x00000000000180e78502c3c952f00bf8bba2bc9ffef60e7188c8763582f26ef4") );
+            ( 0,   uint256("0") );
+
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1514488096, // * UNIX timestamp of last checkpoint block
-    1157185,    // * total number of transactions between genesis and last checkpoint
+    1524446042, // * UNIX timestamp of last checkpoint block
+    0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
-    2000        // * estimated number of transactions per day after checkpoint
+    0        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
@@ -112,7 +106,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, uint32_t nTime, uint3
 
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion)
 {
-    const char* pszTimestamp = "Lux - Implemented New PHI Algo PoW/PoS Hybird - Parallel Masternode - ThankYou - 216k155";
+    const char* pszTimestamp = "Lux - Smart contract testnet";
     return CreateGenesisBlock(pszTimestamp, nTime, nNonce, nBits, nVersion);
 }
 
@@ -129,12 +123,12 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xf9;
-        pchMessageStart[1] = 0x73;
-        pchMessageStart[2] = 0xc9;
-        pchMessageStart[3] = 0xa7;
+        pchMessageStart[0] = 0xa9;
+        pchMessageStart[1] = 0xb8;
+        pchMessageStart[2] = 0xc7;
+        pchMessageStart[3] = 0xd6;
         vAlertPubKey = ParseHex("042d13c016ed91528241bcff222989769417eb10cdb679228c91e26e26900eb9fd053cd9f16a9a2894ad5ebbd551be1a4bd23bd55023679be17f0bd3a16e6fbeba");
-        nDefaultPort = /*28666*/ 26868;
+        nDefaultPort = 28666;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // LUX starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
@@ -143,27 +137,22 @@ public:
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
         nTargetTimespan = 20 * 60; // LUX: 1 36hrs
-        nTargetSpacing = 2 * 60;  // LUX: 2 minute
+        nTargetSpacing = 2 * 60;  // LUX: 60s minute
         nLastPOWBlock = 6000000;
         nMaturity = 79;
         nMasternodeCountDrift = 20;
         nModifierUpdateBlock = 615800;
 
-        genesis = CreateGenesisBlock(1507656633, 986946, 0x1e0fffff, 1);
+        genesis = CreateGenesisBlock(1524446042, 341704, 0x1e0fffff, 1);
 
         hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("0x00000759bb3da130d7c9aedae170da8335f5a0d01a9007e4c8d3ccd08ace6a42"));
-        assert(genesis.hashMerkleRoot == uint256("0xe08ae0cfc35a1d70e6764f347fdc54355206adeb382446dd54c32cd0201000d3"));
-
-        vSeeds.push_back(CDNSSeedData("luxseed1.luxcore.io", "luxseed1.luxcore.io")); // DNSSeed
-        vSeeds.push_back(CDNSSeedData("luxseed2.luxcore.io", "luxseed2.luxcore.io")); // DNSSeed
-        vSeeds.push_back(CDNSSeedData("luxseed3.luxcore.io", "luxseed3.luxcore.io")); // DNSSeed
-        vSeeds.push_back(CDNSSeedData("luxseed4.luxcore.io", "luxseed4.luxcore.io")); // DNSSeed
-        vSeeds.push_back(CDNSSeedData("209.250.254.156", "209.250.254.156")); // Non-standard DNS request
-        vSeeds.push_back(CDNSSeedData("45.76.114.209", "45.76.114.209")); // Non-standard DNS request
-        vSeeds.push_back(CDNSSeedData("5.189.142.181", "5.189.142.181")); // Non-standard DNS request
-        vSeeds.push_back(CDNSSeedData("5.77.44.147", "5.77.44.147")); // Non-standard DNS request
+        assert(hashGenesisBlock == uint256("0x000008c56d3e17a1ee7d30d2c67a05bd51b7d9ecdce6b5358784baa4338b789e"));
+        assert(genesis.hashMerkleRoot == uint256("0x59b19b7c038e8f9a50e296fe340b45bbee00c69b16caf30a25edda9feb0a54f1"));
+        vFixedSeeds.clear();
+        vSeeds.clear();
+        vSeeds.push_back(CDNSSeedData("testnet1", "45.76.127.145")); // DNSSeed seed-1
+        vSeeds.push_back(CDNSSeedData("testnet2", "45.77.178.238")); // DNSSeed seed-5
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,48); // LUX Start letter L
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,48);
@@ -187,12 +176,12 @@ public:
         strSporkKey = "04a983220ea7a38a7106385003fef77896538a382a0dcc389cc45f3c98751d9af423a097789757556259351198a8aaa628a1fd644c3232678c5845384c744ff8d7";
 
         strDarksendPoolDummyAddress = "LgcjpYxWa5EB9KCYaRtpPgG8kgiWRvJY38";
-        nStartMasternodePayments = 1507656633; // 10/10/2017
+        nStartMasternodePayments = 1524446838; // 10/10/2017
 
         nStakingRoundPeriod = 120; // 2 minutes a round
         nStakingInterval = 22;
         nStakingMinAge = 36 * 60 * 60;
-        nFirstSCBlock = 400000;
+        nFirstSCBlock = 100;
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
@@ -212,10 +201,10 @@ public:
     {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-        pchMessageStart[0] = 0x53;
-        pchMessageStart[1] = 0x66;
-        pchMessageStart[2] = 0x55;
-        pchMessageStart[3] = 0xac;
+        pchMessageStart[0] = 0x52;
+        pchMessageStart[1] = 0x64;
+        pchMessageStart[2] = 0x54;
+        pchMessageStart[3] = 0xa3;
         vAlertPubKey = ParseHex("000010e83b2703ccf322f7dbd62dd5855ac7c10bd055814ce121ba32607d573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd42774babea0a073b2ed0c9");
         nDefaultPort = 28333;
         bnProofOfWorkLimit = ~uint256(0) >> 1;
@@ -230,12 +219,12 @@ public:
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis = CreateGenesisBlock(1524402689, 239627, 0x1e0fffff, 1);
+        genesis = CreateGenesisBlock(1524446838, 71327, 0x1e0fffff, 1);
 
         hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("0x00000386e7cb0041f5b4583093a9cbe64bcf167f3291dbd1574ee83f6aac9966"));
-        assert(genesis.hashMerkleRoot == uint256("0x39f9afdc907a5a62083439b6aa19cd565f5f4892e457bc77604db980f55346f9"));
+        assert(hashGenesisBlock == uint256("0x000004688f331e2345c2efac51f7fc5a1c53b08424cc2bd6927c3246eba47f54"));
+        assert(genesis.hashMerkleRoot == uint256("0x8080020ac67d68ec7c7bff4749e4438f0b7a96dc227ecef5b0d5124b01630368"));
 
         vFixedSeeds.clear();
         vSeeds.clear();

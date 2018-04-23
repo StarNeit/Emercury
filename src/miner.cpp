@@ -31,7 +31,7 @@ using namespace std;
 // Duzy: splitting PoW rewards is a dangerous move, potentially
 // causes diverge!! If you have no idea what you're doing, just
 // keep it 'false'.
-const bool ENABLE_POW_REWARD_SPLIT = false;
+const bool ENABLE_POW_REWARD_SPLIT = true;
 
 // Implemented LUX parallel miner | Auto deploy
 
