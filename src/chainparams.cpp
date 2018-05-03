@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The LUX developers
+// Copyright (c) 2015-2017 The EMRC developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -105,16 +105,16 @@ public:
         pchMessageStart[2] = 0xc9;
         pchMessageStart[3] = 0xa7;
         vAlertPubKey = ParseHex("042d13c016ed91528241bcff222989769417eb10cdb679228c91e26e26900eb9fd053cd9f16a9a2894ad5ebbd551be1a4bd23bd55023679be17f0bd3a16e6fbeba");
-        nDefaultPort = /*28666*/ 26868;
-        bnProofOfWorkLimit = ~uint256(0) >> 20; // LUX starting difficulty is 1 / 2^12
+        nDefaultPort = /*28666*/ /*26868*/ 27575;
+        bnProofOfWorkLimit = ~uint256(0) >> 20; // EMRC starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-        nTargetTimespan = 20 * 60; // LUX: 1 36hrs
-        nTargetSpacing = 2 * 60;  // LUX: 2 minute
+        nTargetTimespan = 20 * 60; // EMRC: 1 36hrs
+        nTargetSpacing = 2 * 60;  // EMRC: 2 minute
         nLastPOWBlock = 6000000;
         nMaturity = 79;
         nMasternodeCountDrift = 20;
@@ -143,16 +143,18 @@ public:
         assert(hashGenesisBlock == uint256("0x00000759bb3da130d7c9aedae170da8335f5a0d01a9007e4c8d3ccd08ace6a42"));
         assert(genesis.hashMerkleRoot == uint256("0xe08ae0cfc35a1d70e6764f347fdc54355206adeb382446dd54c32cd0201000d3"));
 
-        vSeeds.push_back(CDNSSeedData("luxseed1.luxcore.io", "luxseed1.luxcore.io")); // DNSSeed
-        vSeeds.push_back(CDNSSeedData("luxseed2.luxcore.io", "luxseed2.luxcore.io")); // DNSSeed
-        vSeeds.push_back(CDNSSeedData("luxseed3.luxcore.io", "luxseed3.luxcore.io")); // DNSSeed
-        vSeeds.push_back(CDNSSeedData("luxseed4.luxcore.io", "luxseed4.luxcore.io")); // DNSSeed
-        vSeeds.push_back(CDNSSeedData("209.250.254.156", "209.250.254.156")); // Non-standard DNS request
-        vSeeds.push_back(CDNSSeedData("45.76.114.209", "45.76.114.209")); // Non-standard DNS request
-        vSeeds.push_back(CDNSSeedData("5.189.142.181", "5.189.142.181")); // Non-standard DNS request
-        vSeeds.push_back(CDNSSeedData("5.77.44.147", "5.77.44.147")); // Non-standard DNS request
+//        vSeeds.push_back(CDNSSeedData("luxseed1.emercury.io", "luxseed1.emercury.io")); // DNSSeed
+//        vSeeds.push_back(CDNSSeedData("luxseed2.emercury.io", "luxseed2.emercury.io")); // DNSSeed
+//        vSeeds.push_back(CDNSSeedData("luxseed3.emercury.io", "luxseed3.emercury.io")); // DNSSeed
+//        vSeeds.push_back(CDNSSeedData("luxseed4.emercury.io", "luxseed4.emercury.io")); // DNSSeed
+//        vSeeds.push_back(CDNSSeedData("209.250.254.156", "209.250.254.156")); // Non-standard DNS request
+//        vSeeds.push_back(CDNSSeedData("45.76.114.209", "45.76.114.209")); // Non-standard DNS request
+//        vSeeds.push_back(CDNSSeedData("5.189.142.181", "5.189.142.181")); // Non-standard DNS request
+//        vSeeds.push_back(CDNSSeedData("5.77.44.147", "5.77.44.147")); // Non-standard DNS request
+	vSeeds.push_back(CDNSSeedData("200.74.240.161", "200.74.240.161"));
+	vSeeds.push_back(CDNSSeedData("200.74.240.127", "200.74.240.127"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,48); // LUX Start letter L
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,48); // EMRC Start letter L
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,48);
         base58Prefixes[SECRET_KEY]     = std::vector<unsigned char>(1,155);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x07)(0x28)(0xA2)(0x4E).convert_to_container<std::vector<unsigned char> >();
@@ -203,14 +205,14 @@ public:
         pchMessageStart[2] = 0x56;
         pchMessageStart[3] = 0xab;
         vAlertPubKey = ParseHex("000010e83b2703ccf322f7dbd62dd5855ac7c10bd055814ce121ba32607d573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd42774babea0a073b2ed0c9");
-        nDefaultPort = 28333;
+        nDefaultPort = /*28333*/ 27579;
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
-        nTargetTimespan = 30 * 60; // LUX: 1 day
-        nTargetSpacing = 3 * 60;  // LUX: 1 minute
+        nTargetTimespan = 30 * 60; // EMRC: 1 day
+        nTargetSpacing = 3 * 60;  // EMRC: 1 minute
         nLastPOWBlock = 6000000;
         nMaturity = 79;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT

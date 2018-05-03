@@ -214,16 +214,16 @@
         <translation>&amp;Eines</translation>
     </message>
     <message>
-        <source>Luxcore</source>
-        <translation>Luxcore</translation>
+        <source>Emercury</source>
+        <translation>Emercury</translation>
     </message>
     <message>
-        <source>&amp;About Luxcore</source>
-        <translation>&amp;Sobre Luxcore</translation>
+        <source>&amp;About Emercury</source>
+        <translation>&amp;Sobre Emercury</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to LUX network</source>
-        <translation><numerusform>%n connexió activa a la xarxa LUX</numerusform><numerusform>%n connexions actives a la xarxa LUX</numerusform></translation>
+        <source>%n active connection(s) to EMRC network</source>
+        <translation><numerusform>%n connexió activa a la xarxa EMRC</numerusform><numerusform>%n connexions actives a la xarxa EMRC</numerusform></translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -392,12 +392,12 @@
         <translation>versió</translation>
     </message>
     <message>
-        <source>Luxcore</source>
-        <translation>Luxcore</translation>
+        <source>Emercury</source>
+        <translation>Emercury</translation>
     </message>
     <message>
-        <source>About Luxcore</source>
-        <translation>Sobre Luxcore</translation>
+        <source>About Emercury</source>
+        <translation>Sobre Emercury</translation>
     </message>
     <message>
         <source>Usage:</source>
@@ -415,12 +415,12 @@
         <translation>Benvingut</translation>
     </message>
     <message>
-        <source>Welcome to Luxcore.</source>
-        <translation>Benvingut a Luxcore.</translation>
+        <source>Welcome to Emercury.</source>
+        <translation>Benvingut a Emercury.</translation>
     </message>
     <message>
-        <source>Luxcore</source>
-        <translation>Luxcore</translation>
+        <source>Emercury</source>
+        <translation>Emercury</translation>
     </message>
     <message>
         <source>Error</source>
@@ -888,8 +888,8 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Luxcore</source>
-        <translation>Luxcore</translation>
+        <source>Emercury</source>
+        <translation>Emercury</translation>
     </message>
     <message>
         <source>Version %1</source>

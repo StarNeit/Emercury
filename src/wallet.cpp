@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The LUX developers
+// Copyright (c) 2015-2017 The EMRC developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1048,6 +1048,7 @@ bool CWalletTx::WriteToDisk()
  */
 int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate)
 {
+    const CChainParams& chainParams = Params();
     int ret = 0;
     int64_t nNow = GetTime();
 
@@ -1061,11 +1062,11 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate)
             pindex = chainActive.Next(pindex);
 
         ShowProgress(_("Rescanning..."), 0); // show rescan progress in GUI as dialog or on splashscreen, if -rescan on startup
-        double dProgressStart = Checkpoints::GuessVerificationProgress(pindex, false);
-        double dProgressTip = Checkpoints::GuessVerificationProgress(chainActive.Tip(), false);
+        double dProgressStart = Checkpoints::GuessVerificationProgress(chainParams.Checkpoints(), pindex, false);
+        double dProgressTip = Checkpoints::GuessVerificationProgress(chainParams.Checkpoints(), chainActive.Tip(), false);
         while (pindex) {
             if (pindex->nHeight % 100 == 0 && dProgressTip - dProgressStart > 0.0)
-                ShowProgress(_("Rescanning..."), std::max(1, std::min(99, (int)((Checkpoints::GuessVerificationProgress(pindex, false) - dProgressStart) / (dProgressTip - dProgressStart) * 100))));
+                ShowProgress(_("Rescanning..."), std::max(1, std::min(99, (int)((Checkpoints::GuessVerificationProgress(chainParams.Checkpoints(), pindex, false) - dProgressStart) / (dProgressTip - dProgressStart) * 100))));
 
             CBlock block;
             ReadBlockFromDisk(block, pindex);
@@ -1076,7 +1077,7 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate)
             pindex = chainActive.Next(pindex);
             if (GetTime() >= nNow + 60) {
                 nNow = GetTime();
-                LogPrintf("Still rescanning. At block %d. Progress=%f\n", pindex->nHeight, Checkpoints::GuessVerificationProgress(pindex));
+                LogPrintf("Still rescanning. At block %d. Progress=%f\n", pindex->nHeight, Checkpoints::GuessVerificationProgress(chainParams.Checkpoints(), pindex));
             }
         }
         ShowProgress(_("Rescanning..."), 100); // hide progress dialog in GUI
@@ -1791,14 +1792,14 @@ bool CWallet::SelectCoins(const std::string &account, const CAmount& nTargetValu
         return (nValueRet >= nTargetValue);
     }
 
-    //if we're doing only denominated, we need to round up to the nearest .1 LUX
+    //if we're doing only denominated, we need to round up to the nearest .1 EMRC
     if (coin_type == ONLY_DENOMINATED) {
         // Make outputs by looping through denominations, from large to small
         BOOST_FOREACH (int64_t v, darkSendDenominations) {
             BOOST_FOREACH (const COutput& out, vCoins) {
                 const CTxOut& txout = out.tx->vout[out.i];
                 if (txout.nValue == v //make sure it's the denom we're looking for
-                    && nValueRet + txout.nValue < nTargetValue + (0.1 * COIN) + 100 //round the amount up to .1 LUX over
+                    && nValueRet + txout.nValue < nTargetValue + (0.1 * COIN) + 100 //round the amount up to .1 EMRC over
                     ) {
 
                     CTxIn vin = CTxIn(out.tx->GetHash(), out.i);
@@ -1868,12 +1869,12 @@ bool CWallet::SelectCoinsByDenominations(int nDenom, int64_t nValueMin, int64_t 
 
             // Function returns as follows:
             //
-            // bit 0 - 10000 LUX+1 ( bit on if present )
-            // bit 1 - 1000 LUX+1
-            // bit 2 - 100 LUX+1
-            // bit 3 - 10 LUX+1
-            // bit 4 - 1 LUX+1
-            // bit 5 - .1 LUX+1
+            // bit 0 - 10000 EMRC+1 ( bit on if present )
+            // bit 1 - 1000 EMRC+1
+            // bit 2 - 100 EMRC+1
+            // bit 3 - 10 EMRC+1
+            // bit 4 - 1 EMRC+1
+            // bit 5 - .1 EMRC+1
 
             CTxIn vin = CTxIn(out.tx->GetHash(), out.i);
 
@@ -2196,9 +2197,9 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend, 
                     if (coin_type == ALL_COINS) {
                         strFailReason = _("Insufficient funds.");
                     } else if (coin_type == ONLY_NONDENOMINATED) {
-                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal 10000 LUX.");
+                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal 10000 EMRC.");
                     } else if (coin_type == ONLY_NONDENOMINATED_NOTMN) {
-                        strFailReason = _("Unable to locate enough DarkSend non-denominated funds for this transaction that are not equal 10000 LUX.");
+                        strFailReason = _("Unable to locate enough DarkSend non-denominated funds for this transaction that are not equal 10000 EMRC.");
                     } else {
                         strFailReason = _("Unable to locate enough DarkSend denominated funds for this transaction.");
                         strFailReason += " " + _("DarkSend uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.");

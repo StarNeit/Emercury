@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin developers
 // Copyright (c) 2009-2015 The Dash developers
-// Copyright (c) 2015-2017 The LUX developers
+// Copyright (c) 2015-2017 The EMRC developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +11,7 @@
 #include "rpcprotocol.h"
 #include "util.h"
 #include "utilstrencodings.h"
-
+#include "univalue/univalue.h"
 #include <boost/filesystem/operations.hpp>
 
 #define _(x) std::string(x) /* Keep the _() around in case gettext or such will be used later to translate non-UI */
@@ -19,7 +19,6 @@
 using namespace std;
 using namespace boost;
 using namespace boost::asio;
-using namespace json_spirit;
 
 std::string HelpMessageCli()
 {
@@ -68,10 +67,10 @@ static bool AppInitRPC(int argc, char* argv[])
     //
     ParseParameters(argc, argv);
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help") || mapArgs.count("-version")) {
-        std::string strUsage = _("Luxcore RPC client version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = _("Emercury RPC client version") + " " + FormatFullVersion() + "\n";
         if (!mapArgs.count("-version")) {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  lux-cli [options] <command> [params]  " + _("Send command to Luxcore") + "\n" +
+                        "  lux-cli [options] <command> [params]  " + _("Send command to Emercury") + "\n" +
                         "  lux-cli [options] help                " + _("List commands") + "\n" +
                         "  lux-cli [options] help <command>      " + _("Get help for a command") + "\n";
 
@@ -99,7 +98,7 @@ static bool AppInitRPC(int argc, char* argv[])
     return true;
 }
 
-Object CallRPC(const string& strMethod, const Array& params)
+UniValue CallRPC(const string& strMethod, const UniValue& params)
 {
     if (mapArgs["-rpcuser"] == "" && mapArgs["-rpcpassword"] == "")
         throw runtime_error(strprintf(
@@ -147,10 +146,10 @@ Object CallRPC(const string& strMethod, const Array& params)
         throw runtime_error("no response from server");
 
     // Parse reply
-    Value valReply;
-    if (!read_string(strReply, valReply))
+    UniValue valReply(UniValue::VSTR);
+    if (!valReply.read(strReply))
         throw runtime_error("couldn't parse reply from server");
-    const Object& reply = valReply.get_obj();
+    const UniValue& reply = valReply.get_obj();
     if (reply.empty())
         throw runtime_error("expected reply to have result, error and id properties");
 
@@ -175,33 +174,33 @@ int CommandLineRPC(int argc, char* argv[])
 
         // Parameters default to strings
         std::vector<std::string> strParams(&argv[2], &argv[argc]);
-        Array params = RPCConvertValues(strMethod, strParams);
+        UniValue params = RPCConvertValues(strMethod, strParams);
 
         // Execute and handle connection failures with -rpcwait
         const bool fWait = GetBoolArg("-rpcwait", false);
         do {
             try {
-                const Object reply = CallRPC(strMethod, params);
+                const UniValue reply = CallRPC(strMethod, params);
 
                 // Parse reply
-                const Value& result = find_value(reply, "result");
-                const Value& error = find_value(reply, "error");
+                const UniValue& result = find_value(reply, "result");
+                const UniValue& error = find_value(reply, "error");
 
-                if (error.type() != null_type) {
+                if (!error.isNull()) {
                     // Error
-                    const int code = find_value(error.get_obj(), "code").get_int();
+                    int code = error["code"].get_int();
                     if (fWait && code == RPC_IN_WARMUP)
                         throw CConnectionFailed("server in warmup");
-                    strPrint = "error: " + write_string(error, false);
+                    strPrint = "error: " + error.write();
                     nRet = abs(code);
                 } else {
                     // Result
-                    if (result.type() == null_type)
+                    if (result.isNull())
                         strPrint = "";
-                    else if (result.type() == str_type)
+                    else if (result.isStr())
                         strPrint = result.get_str();
                     else
-                        strPrint = write_string(result, true);
+                        strPrint = result.write(2);
                 }
 
                 // Connection succeeded, no need to retry.

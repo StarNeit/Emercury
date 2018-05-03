@@ -148,16 +148,16 @@
         <translation>Confirmer le cryptage du portefeuille</translation>
     </message>
     <message>
-        <source>LUX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your LUXs from being stolen by malware infecting your computer.</source>
-        <translation>LUX va maintenant se fermer pour finir le processus cryptage. Notez que le cryptage de votre portefeuille ne peut pas complètement protéger vos LUXs d'un vol par un malware ayant infecté votre ordinateur. </translation>
+        <source>EMRC will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your EMRCs from being stolen by malware infecting your computer.</source>
+        <translation>EMRC va maintenant se fermer pour finir le processus cryptage. Notez que le cryptage de votre portefeuille ne peut pas complètement protéger vos EMRCs d'un vol par un malware ayant infecté votre ordinateur. </translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Êtes-vous sûr de vouloir crypter votre portefeuille?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR LUX&lt;/b&gt;!</source>
-        <translation>Attention : si vous cryptez votre portefeuille et perdez votre phrase secrète, vous &lt;b&gt;PERDREZ TOUS VOS LUX&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR EMRC&lt;/b&gt;!</source>
+        <translation>Attention : si vous cryptez votre portefeuille et perdez votre phrase secrète, vous &lt;b&gt;PERDREZ TOUS VOS EMRC&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -215,8 +215,8 @@
         <translation>Adresse :</translation>
     </message>
     <message>
-        <source>The LUX address to sign the message with</source>
-        <translation>L'adresse LUX avec laquelle signer le message</translation>
+        <source>The EMRC address to sign the message with</source>
+        <translation>L'adresse EMRC avec laquelle signer le message</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -247,8 +247,8 @@
         <translation>Copier la signature actuelle dans le presse-papier</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this LUX address</source>
-        <translation>Signer le message pour prouver que vous possédez cette adresse LUX</translation>
+        <source>Sign the message to prove you own this EMRC address</source>
+        <translation>Signer le message pour prouver que vous possédez cette adresse EMRC</translation>
     </message>
     <message>
         <source>Encrypt &amp;Key</source>
@@ -267,12 +267,12 @@
         <translation>BIP 38 Décrypter</translation>
     </message>
     <message>
-        <source>The LUX address the message was signed with</source>
-        <translation>L'adresse LUX avec laquelle le message a été signé</translation>
+        <source>The EMRC address the message was signed with</source>
+        <translation>L'adresse EMRC avec laquelle le message a été signé</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified LUX address</source>
-        <translation>Vérifiez le message afin de vous assurer qu'il a été signé avec l'adresse LUX renseignée</translation>
+        <source>Verify the message to ensure it was signed with the specified EMRC address</source>
+        <translation>Vérifiez le message afin de vous assurer qu'il a été signé avec l'adresse EMRC renseignée</translation>
     </message>
     <message>
         <source>Decrypt &amp;Key</source>
@@ -506,8 +506,8 @@
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <source>Send coins to a LUX address</source>
-        <translation>Envoyer des pièces à une adresse LUX</translation>
+        <source>Send coins to a EMRC address</source>
+        <translation>Envoyer des pièces à une adresse EMRC</translation>
     </message>
     <message>
         <source>&amp;Masternodes</source>
@@ -518,16 +518,16 @@
         <translation>Afficher les masternodes</translation>
     </message>
     <message>
-        <source>Modify configuration options for LUX</source>
-        <translation>Modifier les options de configuration pour LUX</translation>
+        <source>Modify configuration options for EMRC</source>
+        <translation>Modifier les options de configuration pour EMRC</translation>
     </message>
     <message>
-        <source>Sign messages with your LUX addresses to prove you own them</source>
-        <translation>Signer les messages avec votre adresse LUX pour prouver qu'elles sont bien à vous.</translation>
+        <source>Sign messages with your EMRC addresses to prove you own them</source>
+        <translation>Signer les messages avec votre adresse EMRC pour prouver qu'elles sont bien à vous.</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LUX addresses</source>
-        <translation>Vérifier les messages afin de s'assurer qu'ils sont signés avec l'adresse LUX spécifié</translation>
+        <source>Verify messages to ensure they were signed with specified EMRC addresses</source>
+        <translation>Vérifier les messages afin de s'assurer qu'ils sont signés avec l'adresse EMRC spécifié</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -538,8 +538,8 @@
         <translation>Crypter et décrypter les clés privées en utilisant une phrase secrète</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to LUX network</source>
-        <translation><numerusform>%n connection(s) au réseau LUX</numerusform><numerusform>%n connection(s) au réseau LUX</numerusform></translation>
+        <source>%n active connection(s) to EMRC network</source>
+        <translation><numerusform>%n connection(s) au réseau EMRC</numerusform><numerusform>%n connection(s) au réseau EMRC</numerusform></translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -842,8 +842,8 @@ Adresse : %4
         <translation>Modifier l'adresse d'envoi</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid LUX address.</source>
-        <translation>L'adresse entrée "%1" n'est pas une adresse LUX valide</translation>
+        <source>The entered address "%1" is not a valid EMRC address.</source>
+        <translation>L'adresse entrée "%1" n'est pas une adresse EMRC valide</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1038,32 +1038,32 @@ Veuillez vérifier l'adresse et réessayer.</translation>
         <translation>Veuillez sélectionner un niveau de confidentialité.</translation>
     </message>
     <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 LUX</source>
-        <translation>Utiliser 2 masternodes différentes pour mélanger les fonds jusqu'a 10000 LUX</translation>
+        <source>Use 2 separate masternodes to mix funds up to 10000 EMRC</source>
+        <translation>Utiliser 2 masternodes différentes pour mélanger les fonds jusqu'a 10000 EMRC</translation>
     </message>
     <message>
-        <source>Use 8 separate masternodes to mix funds up to 10000 LUX</source>
-        <translation>Utiliser 8 masternodes différentes pour mélanger les fonds jusqu'a 10000 LUX</translation>
+        <source>Use 8 separate masternodes to mix funds up to 10000 EMRC</source>
+        <translation>Utiliser 8 masternodes différentes pour mélanger les fonds jusqu'a 10000 EMRC</translation>
     </message>
     <message>
         <source>Use 16 separate masternodes</source>
         <translation>Utiliser 16 masternodes différentes</translation>
     </message>
     <message>
-        <source>This option is the quickest and will cost about ~0.025 LUX to anonymize 10000 LUX</source>
-        <translation>Cette option est la plus rapide, et coutera ~0.025 LUX pour anonymiser 10000 LUX</translation>
+        <source>This option is the quickest and will cost about ~0.025 EMRC to anonymize 10000 EMRC</source>
+        <translation>Cette option est la plus rapide, et coutera ~0.025 EMRC pour anonymiser 10000 EMRC</translation>
     </message>
     <message>
-        <source>This option is moderately fast and will cost about 0.05 LUX to anonymize 10000 LUX</source>
-        <translation>Cette option est moyennement rapide, et coutera 0.05 LUX pour anonymiser 10000 LUX</translation>
+        <source>This option is moderately fast and will cost about 0.05 EMRC to anonymize 10000 EMRC</source>
+        <translation>Cette option est moyennement rapide, et coutera 0.05 EMRC pour anonymiser 10000 EMRC</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
         <translation>Il s'agit de l'option la plus lente est la plus sécurisé. Utiliser l'anonymat maximum coutera</translation>
     </message>
     <message>
-        <source>0.1 LUX per 10000 LUX you anonymize.</source>
-        <translation>0.1 LUX par 10000 LUX vous anonymisez.</translation>
+        <source>0.1 EMRC per 10000 EMRC you anonymize.</source>
+        <translation>0.1 EMRC par 10000 EMRC vous anonymisez.</translation>
     </message>
     </context>
 <context>
@@ -1370,8 +1370,8 @@ Veuillez vérifier l'adresse et réessayer.</translation>
         <translation>Après commission</translation>
     </message>
     <message>
-        <source>0 LUX</source>
-        <translation>0 LUX</translation>
+        <source>0 EMRC</source>
+        <translation>0 EMRC</translation>
     </message>
     <message>
         <source>Transaction Fee:</source>
@@ -1461,8 +1461,8 @@ Veuillez vérifier l'adresse et réessayer.</translation>
         <translation>Payer à :</translation>
     </message>
     <message>
-        <source>The LUX address to send the payment to</source>
-        <translation>L'adresse LUX à laquelle envoyer le paiement</translation>
+        <source>The EMRC address to send the payment to</source>
+        <translation>L'adresse EMRC à laquelle envoyer le paiement</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1507,7 +1507,7 @@ Veuillez vérifier l'adresse et réessayer.</translation>
         <translation>Signer le message</translation>
     </message>
     <message>
-        <source>The LUX address to sign the message with</source>
+        <source>The EMRC address to sign the message with</source>
         <translation>L</translation>
     </message>
     <message>
@@ -1535,16 +1535,16 @@ Veuillez vérifier l'adresse et réessayer.</translation>
         <translation>Copier la signature actuelle dans le presse-papier</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this LUX address</source>
-        <translation>Signer le message pour prouver que vous possédez cette adresse LUX</translation>
+        <source>Sign the message to prove you own this EMRC address</source>
+        <translation>Signer le message pour prouver que vous possédez cette adresse EMRC</translation>
     </message>
     <message>
-        <source>The LUX address the message was signed with</source>
-        <translation>L'adresse LUX avec laquelle le message a été signé</translation>
+        <source>The EMRC address the message was signed with</source>
+        <translation>L'adresse EMRC avec laquelle le message a été signé</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified LUX address</source>
-        <translation>Vérifiez le message afin de vous assurer qu'il a été signé avec l'adresse LUX renseignée</translation>
+        <source>Verify the message to ensure it was signed with the specified EMRC address</source>
+        <translation>Vérifiez le message afin de vous assurer qu'il a été signé avec l'adresse EMRC renseignée</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>

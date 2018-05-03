@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The LUX developers
+// Copyright (c) 2015-2017 The EMRC developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -290,6 +290,26 @@ bool static Bind(const CService& addr, unsigned int flags)
     return true;
 }
 
+void OnRPCStopped()
+{
+    cvBlockChange.notify_all();
+    LogPrint("rpc", "RPC stopped.\n");
+}
+
+void OnRPCPreCommand(const CRPCCommand& cmd)
+{
+#ifdef ENABLE_WALLET
+    if (cmd.reqWallet && !pwalletMain)
+        throw JSONRPCError(RPC_METHOD_NOT_FOUND, "Method not found (disabled)");
+#endif
+
+    // Observe safe mode
+    string strWarning = GetWarnings("rpc");
+    if (strWarning != "" && !GetBoolArg("-disablesafemode", false) &&
+        !cmd.okSafeMode)
+        throw JSONRPCError(RPC_FORBIDDEN_BY_SAFE_MODE, string("Safe mode: ") + strWarning);
+}
+
 std::string HelpMessage(HelpMessageMode mode)
 {
     // When adding new options to the categories, please keep and ensure alphabetical ordering.
@@ -360,8 +380,8 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += "  -disablewallet           " + _("Do not load the wallet and disable wallet RPC calls") + "\n";
     strUsage += "  -keypool=<n>             " + strprintf(_("Set key pool size to <n> (default: %u)"), 100) + "\n";
     if (GetBoolArg("-help-debug", false))
-        strUsage += "  -mintxfee=<amt>          " + strprintf(_("Fees (in LUX/Kb) smaller than this are considered zero fee for transaction creation (default: %s)"), FormatMoney(CWallet::minTxFee.GetFeePerK())) + "\n";
-    strUsage += "  -paytxfee=<amt>          " + strprintf(_("Fee (in LUX/kB) to add to transactions you send (default: %s)"), FormatMoney(payTxFee.GetFeePerK())) + "\n";
+        strUsage += "  -mintxfee=<amt>          " + strprintf(_("Fees (in EMRC/Kb) smaller than this are considered zero fee for transaction creation (default: %s)"), FormatMoney(CWallet::minTxFee.GetFeePerK())) + "\n";
+    strUsage += "  -paytxfee=<amt>          " + strprintf(_("Fee (in EMRC/kB) to add to transactions you send (default: %s)"), FormatMoney(payTxFee.GetFeePerK())) + "\n";
     strUsage += "  -rescan                  " + _("Rescan the block chain for missing wallet transactions") + " " + _("on startup") + "\n";
     strUsage += "  -salvagewallet           " + _("Attempt to recover private keys from a corrupt wallet.dat") + " " + _("on startup") + "\n";
     strUsage += "  -sendfreetransactions    " + strprintf(_("Send transactions as zero-fee transactions if possible (default: %u)"), 0) + "\n";
@@ -418,7 +438,7 @@ std::string HelpMessage(HelpMessageMode mode)
         strUsage += "  -relaypriority         " + strprintf(_("Require high priority for relaying free or low-fee transactions (default:%u)"), 1) + "\n";
         strUsage += "  -maxsigcachesize=<n>   " + strprintf(_("Limit size of signature cache to <n> entries (default: %u)"), 50000) + "\n";
     }
-    strUsage += "  -minrelaytxfee=<amt>   " + strprintf(_("Fees (in LUX/Kb) smaller than this are considered zero fee for relaying (default: %s)"), FormatMoney(::minRelayTxFee.GetFeePerK())) + "\n";
+    strUsage += "  -minrelaytxfee=<amt>   " + strprintf(_("Fees (in EMRC/Kb) smaller than this are considered zero fee for relaying (default: %s)"), FormatMoney(::minRelayTxFee.GetFeePerK())) + "\n";
     strUsage += "  -printtoconsole        " + strprintf(_("Send trace/debug info to console instead of debug.log file (default: %u)"), 0) + "\n";
     if (GetBoolArg("-help-debug", false)) {
         strUsage += "  -printpriority         " + strprintf(_("Log transaction priority and fee per kB when mining blocks (default: %u)"), 0) + "\n";
@@ -441,7 +461,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += "\n" + _("Darksend options:") + "\n";
     strUsage += "  -enabledarksend=<n>          " + strprintf(_("Enable use of automated darksend for funds stored in this wallet (0-1, default: %u)"), 0) + "\n";
     strUsage += "  -darksendrounds=<n>          " + strprintf(_("Use N separate masternodes to anonymize funds  (2-8, default: %u)"), 2) + "\n";
-    strUsage += "  -anonymizeluxamount=<n>     " + strprintf(_("Keep N LUX anonymized (default: %u)"), 0) + "\n";
+    strUsage += "  -anonymizeluxamount=<n>     " + strprintf(_("Keep N EMRC anonymized (default: %u)"), 0) + "\n";
     strUsage += "  -liquidityprovider=<n>       " + strprintf(_("Provide liquidity to Darksend by infrequently mixing coins on a continual basis (0-100, default: %u, 1=very frequent, high fees, 100=very infrequent, low fees)"), 0) + "\n";
 
     strUsage += "\n" + _("InstanTX options:") + "\n";
@@ -483,7 +503,7 @@ std::string LicenseInfo()
            "\n" +
            FormatParagraph(strprintf(_("Copyright (C) 2014-%i The Dash Core Developers"), COPYRIGHT_YEAR)) + "\n" +
            "\n" +
-           FormatParagraph(strprintf(_("Copyright (C) 2017-%i The LUX-Core Developers"), COPYRIGHT_YEAR)) + "\n" +
+           FormatParagraph(strprintf(_("Copyright (C) 2017-%i The EMRC-Core Developers"), COPYRIGHT_YEAR)) + "\n" +
            "\n" +
            FormatParagraph(_("This is experimental software.")) + "\n" +
            "\n" +
@@ -575,7 +595,7 @@ void ThreadImport(std::vector<boost::filesystem::path> vImportFiles)
 }
 
 /** Sanity checks
- *  Ensure that LUX is running in a usable environment with all
+ *  Ensure that EMRC is running in a usable environment with all
  *  necessary library support.
  */
 bool InitSanityCheck(void)
@@ -863,7 +883,7 @@ bool AppInit2(boost::thread_group& threadGroup)
 
     // Sanity check
     if (!InitSanityCheck())
-        return InitError(_("Initialization sanity check failed. Luxcore is shutting down."));
+        return InitError(_("Initialization sanity check failed. Emercury is shutting down."));
 
     std::string strDataDir = GetDataDir().string();
 #ifdef ENABLE_WALLET
@@ -871,7 +891,7 @@ bool AppInit2(boost::thread_group& threadGroup)
     if (strWalletFile != boost::filesystem::basename(strWalletFile) + boost::filesystem::extension(strWalletFile))
         return InitError(strprintf(_("Wallet %s resides outside data directory %s"), strWalletFile, strDataDir));
 #endif
-    // Make sure only a single LUX process is using the data directory.
+    // Make sure only a single EMRC process is using the data directory.
     boost::filesystem::path pathLockFile = GetDataDir() / ".lock";
     FILE* file = fopen(pathLockFile.string().c_str(), "a"); // empty lock file; created if it doesn't exist.
     if (file) fclose(file);
@@ -879,7 +899,7 @@ bool AppInit2(boost::thread_group& threadGroup)
 
     // Wait maximum 10 seconds if an old wallet is still running. Avoids lockup during restart
     if (!lock.timed_lock(boost::get_system_time() + boost::posix_time::seconds(10)))
-        return InitError(strprintf(_("Cannot obtain a lock on data directory %s. Luxcore is probably already running."), strDataDir));
+        return InitError(strprintf(_("Cannot obtain a lock on data directory %s. Emercury is probably already running."), strDataDir));
 
 #ifndef WIN32
     CreatePidFile(GetPidFile(), getpid());
@@ -887,7 +907,7 @@ bool AppInit2(boost::thread_group& threadGroup)
     if (GetBoolArg("-shrinkdebugfile", !fDebug))
         ShrinkDebugFile();
     LogPrintf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    LogPrintf("LUX version %s (%s)\n", FormatFullVersion(), CLIENT_DATE);
+    LogPrintf("EMRC version %s (%s)\n", FormatFullVersion(), CLIENT_DATE);
     LogPrintf("Using OpenSSL version %s\n", SSLeay_version(SSLEAY_VERSION));
 #ifdef ENABLE_WALLET
     LogPrintf("Using BerkeleyDB version %s\n", DbEnv::version(0, 0, 0));
@@ -919,6 +939,8 @@ bool AppInit2(boost::thread_group& threadGroup)
      */
     if (fServer) {
         uiInterface.InitMessage.connect(SetRPCWarmupStatus);
+        RPCServer::OnStopped(&OnRPCStopped);
+        RPCServer::OnPreCommand(&OnRPCPreCommand);
         StartRPCThreads();
     }
 
@@ -1020,8 +1042,22 @@ bool AppInit2(boost::thread_group& threadGroup)
                 // failure is ok (well, not really, but it's not worse than what we started with)
             }
 
+            int max_tries = 10;
+            bool isSuccess = false;
             // try again
-            if (!bitdb.Open(GetDataDir())) {
+            while (max_tries > 0)
+            {
+                if (bitdb.Open(GetDataDir())) {
+                    isSuccess = true;
+                    break;
+                }
+
+                max_tries--;
+                MilliSleep(300);
+            }
+
+            if (!isSuccess)
+            {
                 // if it still fails, it probably means we can't even create the database env
                 string msg = strprintf(_("Error initializing wallet database environment %s!"), strDataDir);
                 return InitError(msg);
@@ -1201,11 +1237,13 @@ bool AppInit2(boost::thread_group& threadGroup)
     nCoinCacheSize = nTotalCache / 300; // coins in memory require around 300 bytes
 
     bool fLoaded = false;
-    while (!fLoaded) {
+    while (!fLoaded && !fRequestShutdown) {
         bool fReset = fReindex;
         std::string strLoadError;
 
         uiInterface.InitMessage(_("Loading block index..."));
+
+        LOCK(cs_main);
 
         nStart = GetTimeMillis();
         do {
@@ -1224,6 +1262,17 @@ bool AppInit2(boost::thread_group& threadGroup)
                 if (fReindex)
                     pblocktree->WriteReindexing(true);
 
+                if (fRequestShutdown)
+                {
+                    LogPrintf("Shutdown requested. Exiting.\n");
+                    return false;
+                }
+
+                // LoadBlockIndex will load fTxIndex from the db, or set it if
+                // we're reindexing. It will also load fHavePruned if we've
+                // ever removed a block file from disk.
+                // Note that it also sets fReindex based on the disk flag!
+                // From here on out fReindex and fReset mean something different!
                 if (!LoadBlockIndex()) {
                     strLoadError = _("Error loading block database");
                     break;
@@ -1253,7 +1302,7 @@ bool AppInit2(boost::thread_group& threadGroup)
                     break;
                 }
             } catch (std::exception& e) {
-                if (fDebug) LogPrintf("%s\n", e.what());
+                LogPrintf("%s\n", e.what());
                 strLoadError = _("Error opening block database");
                 break;
             }
@@ -1261,7 +1310,7 @@ bool AppInit2(boost::thread_group& threadGroup)
             fLoaded = true;
         } while (false);
 
-        if (!fLoaded) {
+        if (!fLoaded && !fRequestShutdown) {
             // first suggest a reindex
             if (!fReset) {
                 bool fRet = uiInterface.ThreadSafeMessageBox(
@@ -1333,9 +1382,9 @@ bool AppInit2(boost::thread_group& threadGroup)
                              " or address book entries might be missing or incorrect."));
                 InitWarning(msg);
             } else if (nLoadWalletRet == DB_TOO_NEW)
-                strErrors << _("Error loading wallet.dat: Wallet requires newer version of Luxcore") << "\n";
+                strErrors << _("Error loading wallet.dat: Wallet requires newer version of Emercury") << "\n";
             else if (nLoadWalletRet == DB_NEED_REWRITE) {
-                strErrors << _("Wallet needed to be rewritten: restart Luxcore to complete") << "\n";
+                strErrors << _("Wallet needed to be rewritten: restart Emercury to complete") << "\n";
                 LogPrintf("%s", strErrors.str());
                 return InitError(strErrors.str());
             } else
@@ -1499,7 +1548,7 @@ bool AppInit2(boost::thread_group& threadGroup)
     if (nAnonymizeLuxAmount > 999999) nAnonymizeLuxAmount = 999999;
     if (nAnonymizeLuxAmount < 2) nAnonymizeLuxAmount = 2;
 
-    LogPrintf("LUX darksend rounds %d\n", nDarksendRounds);
+    LogPrintf("EMRC darksend rounds %d\n", nDarksendRounds);
     LogPrintf("Anonymize Lux Amount %d\n", nAnonymizeLuxAmount);
 
     /* Denominations

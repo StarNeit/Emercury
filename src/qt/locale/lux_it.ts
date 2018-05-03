@@ -62,12 +62,12 @@
         <translation>Indirizzi di ricezione</translation>
     </message>
     <message>
-        <source>These are your LUX addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Questi sono gli indirizzi LUX per l'invio di pagamenti. Controlla sempre l'importo e l'indirizzo di ricezione prima di inviare valuta.</translation>
+        <source>These are your EMRC addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Questi sono gli indirizzi EMRC per l'invio di pagamenti. Controlla sempre l'importo e l'indirizzo di ricezione prima di inviare valuta.</translation>
     </message>
     <message>
-        <source>These are your LUX addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Questi sono gli indirizzi LUX per la ricezione di pagamenti. Si raccomanda di utilizzare un indirizzo diverso per ogni transazione.</translation>
+        <source>These are your EMRC addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Questi sono gli indirizzi EMRC per la ricezione di pagamenti. Si raccomanda di utilizzare un indirizzo diverso per ogni transazione.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,16 +176,16 @@
         <translation>Conferma cifratura portafoglio</translation>
     </message>
     <message>
-        <source>LUX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your LUXs from being stolen by malware infecting your computer.</source>
-        <translation>LUX verrà ora chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non protegge completamente i tuoi LUX dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
+        <source>EMRC will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your EMRCs from being stolen by malware infecting your computer.</source>
+        <translation>EMRC verrà ora chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non protegge completamente i tuoi EMRC dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Confermi di voler crittografare il portafoglio?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR LUX&lt;/b&gt;!</source>
-        <translation>Attenzione: Se crittografi il portafoglio e poi perdi la parola d'ordine, &lt;b&gt;PERDERAI TUTTI I TUOI LUX&lt;7b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR EMRC&lt;/b&gt;!</source>
+        <translation>Attenzione: Se crittografi il portafoglio e poi perdi la parola d'ordine, &lt;b&gt;PERDERAI TUTTI I TUOI EMRC&lt;7b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -247,8 +247,8 @@
         <translation>Indirizzo:</translation>
     </message>
     <message>
-        <source>The LUX address to sign the message with</source>
-        <translation>L'indirizzo LUX per firmare il messaggio con</translation>
+        <source>The EMRC address to sign the message with</source>
+        <translation>L'indirizzo EMRC per firmare il messaggio con</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -279,8 +279,8 @@
         <translation>Copiare la firma corrente negli Appunti di sistema</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this LUX address</source>
-        <translation>Firmare il messaggio per dimostrare di possedere questo indirizzo LUX</translation>
+        <source>Sign the message to prove you own this EMRC address</source>
+        <translation>Firmare il messaggio per dimostrare di possedere questo indirizzo EMRC</translation>
     </message>
     <message>
         <source>Encrypt &amp;Key</source>
@@ -299,12 +299,12 @@
         <translation>Immettere la chiave privata codificata BIP 38. Inserire la passphrase nella casella centrale. Fare clic su Decripta Chiave per calcolare la chiave privata. Dopo che la chiave viene decrittata, cliccando su "Importa indirizzo" verrà aggiunta questa chiave privata al portafoglio.</translation>
     </message>
     <message>
-        <source>The LUX address the message was signed with</source>
-        <translation>L'indirizzo LUX con cui è stato firmato il messaggio</translation>
+        <source>The EMRC address the message was signed with</source>
+        <translation>L'indirizzo EMRC con cui è stato firmato il messaggio</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified LUX address</source>
-        <translation>Verificare il messaggio per assicurarsi che sia stato firmato con l'indirizzo LUX specificato </translation>
+        <source>Verify the message to ensure it was signed with the specified EMRC address</source>
+        <translation>Verificare il messaggio per assicurarsi che sia stato firmato con l'indirizzo EMRC specificato </translation>
     </message>
     <message>
         <source>Decrypt &amp;Key</source>
@@ -562,12 +562,12 @@
         <translation>Schede degli strumenti</translation>
     </message>
     <message>
-        <source>Luxcore</source>
-        <translation>Luxcore</translation>
+        <source>Emercury</source>
+        <translation>Emercury</translation>
     </message>
     <message>
-        <source>Send coins to a LUX address</source>
-        <translation>Invia monete all' indirizzo LUX</translation>
+        <source>Send coins to a EMRC address</source>
+        <translation>Invia monete all' indirizzo EMRC</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and lux: URIs)</source>
@@ -582,20 +582,20 @@
         <translation>Esplora i masternodes</translation>
     </message>
     <message>
-        <source>Show information about Luxcore</source>
-        <translation>Visualizza informazioni su Luxcore</translation>
+        <source>Show information about Emercury</source>
+        <translation>Visualizza informazioni su Emercury</translation>
     </message>
     <message>
-        <source>Modify configuration options for LUX</source>
-        <translation>Modifica le opzioni di configurazione per LUX</translation>
+        <source>Modify configuration options for EMRC</source>
+        <translation>Modifica le opzioni di configurazione per EMRC</translation>
     </message>
     <message>
-        <source>Sign messages with your LUX addresses to prove you own them</source>
-        <translation>Firma i messaggi con i tuoi indirizzi LUX per dimostrare di essere il proprietario </translation>
+        <source>Sign messages with your EMRC addresses to prove you own them</source>
+        <translation>Firma i messaggi con i tuoi indirizzi EMRC per dimostrare di essere il proprietario </translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LUX addresses</source>
-        <translation>Verifica i messaggi per assicurarsi che siano stati firmati con indirizzi LUX specifici</translation>
+        <source>Verify messages to ensure they were signed with specified EMRC addresses</source>
+        <translation>Verifica i messaggi per assicurarsi che siano stati firmati con indirizzi EMRC specifici</translation>
     </message>
     <message>
         <source>Encrypt and decrypt private keys using a passphrase</source>
@@ -606,16 +606,16 @@
         <translation>Impostazioni MultiSend</translation>
     </message>
     <message>
-        <source>Open a LUX: URI or payment request</source>
-        <translation>Apri un LUX: URI o richiesta di pagamento</translation>
+        <source>Open a EMRC: URI or payment request</source>
+        <translation>Apri un EMRC: URI o richiesta di pagamento</translation>
     </message>
     <message>
         <source>Block explorer window</source>
         <translation>Finestra Block Explorer</translation>
     </message>
     <message>
-        <source>Show the Luxcore help message to get a list with possible LUX command-line options</source>
-        <translation>Mostra il messaggio di aiuto Luxcore per ottenere un elenco con le possibili opzioni di riga di comando LUX</translation>
+        <source>Show the Emercury help message to get a list with possible EMRC command-line options</source>
+        <translation>Mostra il messaggio di aiuto Emercury per ottenere un elenco con le possibili opzioni di riga di comando EMRC</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -716,15 +716,15 @@ MultiSend: %1</translation>
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Luxcore</source>
-        <translation>Luxcore</translation>
+        <source>Emercury</source>
+        <translation>Emercury</translation>
     </message>
     </context>
 <context>
     <name>Intro</name>
     <message>
-        <source>Luxcore</source>
-        <translation>Luxcore</translation>
+        <source>Emercury</source>
+        <translation>Emercury</translation>
     </message>
     <message>
         <source>Error</source>
@@ -849,8 +849,8 @@ MultiSend: %1</translation>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The LUX address to sign the message with</source>
-        <translation>L'indirizzo LUX per firmare il messaggio con</translation>
+        <source>The EMRC address to sign the message with</source>
+        <translation>L'indirizzo EMRC per firmare il messaggio con</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -873,16 +873,16 @@ MultiSend: %1</translation>
         <translation>Copiare la firma corrente negli Appunti di sistema</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this LUX address</source>
-        <translation>Firmare il messaggio per dimostrare di possedere questo indirizzo LUX</translation>
+        <source>Sign the message to prove you own this EMRC address</source>
+        <translation>Firmare il messaggio per dimostrare di possedere questo indirizzo EMRC</translation>
     </message>
     <message>
-        <source>The LUX address the message was signed with</source>
-        <translation>L'indirizzo LUX con cui è stato firmato il messaggio</translation>
+        <source>The EMRC address the message was signed with</source>
+        <translation>L'indirizzo EMRC con cui è stato firmato il messaggio</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified LUX address</source>
-        <translation>Verificare il messaggio per assicurarsi che sia stato firmato con l'indirizzo specificato LUX</translation>
+        <source>Verify the message to ensure it was signed with the specified EMRC address</source>
+        <translation>Verificare il messaggio per assicurarsi che sia stato firmato con l'indirizzo specificato EMRC</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
@@ -920,8 +920,8 @@ MultiSend: %1</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Luxcore</source>
-        <translation>Luxcore</translation>
+        <source>Emercury</source>
+        <translation>Emercury</translation>
     </message>
     </context>
 <context>

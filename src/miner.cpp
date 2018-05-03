@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The LUX developers
+// Copyright (c) 2015-2017 The EMRC developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -33,13 +33,13 @@ using namespace std;
 // keep it 'false'.
 const bool ENABLE_POW_REWARD_SPLIT = false;
 
-// Implemented LUX parallel miner | Auto deploy
+// Implemented EMRC parallel miner | Auto deploy
 
 extern unsigned int nMinerSleep;
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// LUXMiner
+// EMRCMiner
 //
 
 //
@@ -92,6 +92,10 @@ public:
 
 void UpdateTime(CBlockHeader* pblock, const CBlockIndex* pindexPrev)
 {
+#if 0
+    const CChainParams& chainParams = Params();
+    const Consensus::Params& consensusParams = chainParams.GetConsensus();
+#endif
     pblock->nTime = std::max(pindexPrev->GetMedianTimePast() + 1, GetAdjustedTime());
 
     // Updating time can change work required on testnet:
@@ -452,7 +456,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     {
         LOCK(cs_main);
         if (pblock->hashPrevBlock != chainActive.Tip()->GetBlockHash())
-            return error("LUXMiner : generated block is stale");
+            return error("EMRCMiner : generated block is stale");
     }
 
     // Remove key from key pool
@@ -467,7 +471,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     // Process this block the same as if we had received it from another node
     CValidationState state;
     if (!ProcessNewBlock(state, NULL, pblock)) {
-        return error("LUXMiner : ProcessNewBlock, block not accepted");
+        return error("EMRCMiner : ProcessNewBlock, block not accepted");
     }
 
     return true;
@@ -479,7 +483,7 @@ static bool fGenerateBitcoins = false;
 
 void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 {
-    LogPrintf("LUXMiner started (%s)\n", (fProofOfStake ? "PoS" : "PoW"));
+    LogPrintf("EMRCMiner started (%s)\n", (fProofOfStake ? "PoS" : "PoW"));
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
     RenameThread("lux-miner");
 
@@ -557,7 +561,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
             continue;
         }
 
-        LogPrintf("Running LUXMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
+        LogPrintf("Running EMRCMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
             ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
         //

@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The LUX developers
+// Copyright (c) 2015-2017 The EMRC developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -271,7 +271,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
 
 
         if (recipients[0].useInstanTX && total > GetSporkValue(SPORK_2_MAX_VALUE) * COIN) {
-            emit message(tr("Send Coins"), tr("InstanTX doesn't support sending values that high yet. Transactions are currently limited to %1 LUX.").arg(GetSporkValue(SPORK_2_MAX_VALUE)),
+            emit message(tr("Send Coins"), tr("InstanTX doesn't support sending values that high yet. Transactions are currently limited to %1 EMRC.").arg(GetSporkValue(SPORK_2_MAX_VALUE)),
                 CClientUIInterface::MSG_ERROR);
             return TransactionCreationFailed;
         }
@@ -280,7 +280,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
         transaction.setTransactionFee(nFeeRequired);
 
         if (recipients[0].useInstanTX && newTx->GetValueOut() > GetSporkValue(SPORK_2_MAX_VALUE) * COIN) {
-            emit message(tr("Send Coins"), tr("InstanTX doesn't support sending values that high yet. Transactions are currently limited to %1 LUX.").arg(GetSporkValue(SPORK_2_MAX_VALUE)),
+            emit message(tr("Send Coins"), tr("InstanTX doesn't support sending values that high yet. Transactions are currently limited to %1 EMRC.").arg(GetSporkValue(SPORK_2_MAX_VALUE)),
                 CClientUIInterface::MSG_ERROR);
             return TransactionCreationFailed;
         }

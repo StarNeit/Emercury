@@ -26,7 +26,7 @@
 5. Export the required environment variables
 
     ```shell
-    export LUX_PLATFORM='mac'
+    export EMRC_PLATFORM='mac'
     export CXX=clang++
     export CC=clang
     ```

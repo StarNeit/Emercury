@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto             -*- c++ -*-
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The LUX developers
+// Copyright (c) 2015-2017 The EMRC developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -56,7 +56,7 @@ static const int SERIALIZE_TRANSACTION_NO_WITNESS = 0x40000000;
 #define START_MASTERNODE_PAYMENTS_TESTNET 1432907775
 #define START_MASTERNODE_PAYMENTS 1432907775
 
-static const int64_t DARKSEND_COLLATERAL = (16120*COIN); //161.20 LUX
+static const int64_t DARKSEND_COLLATERAL = (16120*COIN); //161.20 EMRC
 static const int64_t DARKSEND_FEE = (0.002*COIN); // reward masternode
 static const int64_t DARKSEND_POOL_MAX = (1999999.99*COIN);
 

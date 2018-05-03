@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The LUX developers
+// Copyright (c) 2015-2017 The EMRC developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -27,10 +27,12 @@
 #include <boost/iostreams/stream.hpp>
 #include <boost/shared_ptr.hpp>
 
+#include "univalue/univalue.h"
+
 using namespace std;
 using namespace boost;
 using namespace boost::asio;
-using namespace json_spirit;
+
 
 //! Number of bytes to allocate and read at most at once in post data
 const size_t POST_READ_SIZE = 256 * 1024;
@@ -248,7 +250,7 @@ int ReadHTTPMessage(std::basic_istream<char>& stream, map<string, string>& mapHe
 }
 
 /**
- * JSON-RPC protocol.  LUX speaks version 1.0 for maximum compatibility,
+ * JSON-RPC protocol.  EMRC speaks version 1.0 for maximum compatibility,
  * but uses JSON-RPC 1.1/2.0 standards for parts of the 1.0 standard that were
  * unspecified (HTTP errors and contents of 'error').
  * 
@@ -257,20 +259,20 @@ int ReadHTTPMessage(std::basic_istream<char>& stream, map<string, string>& mapHe
  * http://www.codeproject.com/KB/recipes/JSON_Spirit.aspx
  */
 
-string JSONRPCRequest(const string& strMethod, const Array& params, const Value& id)
+string JSONRPCRequest(const string& strMethod, const UniValue& params, const UniValue& id)
 {
-    Object request;
+    UniValue request(UniValue::VOBJ);
     request.push_back(Pair("method", strMethod));
     request.push_back(Pair("params", params));
     request.push_back(Pair("id", id));
-    return write_string(Value(request), false) + "\n";
+    return request.write() + "\n";
 }
 
-Object JSONRPCReplyObj(const Value& result, const Value& error, const Value& id)
+UniValue JSONRPCReplyObj(const UniValue& result, const UniValue& error, const UniValue& id)
 {
-    Object reply;
-    if (error.type() != null_type)
-        reply.push_back(Pair("result", Value::null));
+    UniValue reply(UniValue::VOBJ);
+    if (!error.isNull())
+        reply.push_back(Pair("result", NullUniValue));
     else
         reply.push_back(Pair("result", result));
     reply.push_back(Pair("error", error));
@@ -278,15 +280,15 @@ Object JSONRPCReplyObj(const Value& result, const Value& error, const Value& id)
     return reply;
 }
 
-string JSONRPCReply(const Value& result, const Value& error, const Value& id)
+string JSONRPCReply(const UniValue& result, const UniValue& error, const UniValue& id)
 {
-    Object reply = JSONRPCReplyObj(result, error, id);
-    return write_string(Value(reply), false) + "\n";
+    UniValue reply = JSONRPCReplyObj(result, error, id);
+    return reply.write() + "\n";
 }
 
-Object JSONRPCError(int code, const string& message)
+UniValue JSONRPCError(int code, const string& message)
 {
-    Object error;
+    UniValue error(UniValue::VOBJ);
     error.push_back(Pair("code", code));
     error.push_back(Pair("message", message));
     return error;

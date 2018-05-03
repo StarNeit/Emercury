@@ -2,8 +2,8 @@
 // Created by 216k155 on 12/26/17.
 //
 
-#ifndef LUX_TRADINGDIALOG_H
-#define LUX_TRADINGDIALOG_H
+#ifndef EMRC_TRADINGDIALOG_H
+#define EMRC_TRADINGDIALOG_H
 
 #include <QWidget>
 #include <QObject>
@@ -59,13 +59,13 @@ private slots:
     void on_SaveKeys_clicked();
     void on_GenDepositBTN_clicked();
     void showMarketHistoryWhenReplyFinished();
-    void showBalanceOfLUXOnTradingTab();
+    void showBalanceOfEMRCOnTradingTab();
     void showBalanceOfBTCOnTradingTab();
     void showOrderBookOnTradingTab();
     void showMarketHistoryOnTradingTab();
     void showBalanceOfBTCOnSendTab();
-    void showBalanceOfLUXOnSendTab();
-    void showBalanceOfLUXOnBalanceTab();
+    void showBalanceOfEMRCOnSendTab();
+    void showBalanceOfEMRCOnBalanceTab();
     void showBalanceOfBTCOnBalanceTab();
     void showOpenOrders();
     void showAccountHistory();
@@ -77,14 +77,14 @@ private slots:
     void on_BuyBidcomboBox_currentIndexChanged(const QString &arg1);
     void on_UnitsInput_textChanged(const QString &arg1);
     void on_BuyBidPriceEdit_textChanged(const QString &arg1);
-    void on_BuyLUX_clicked();
+    void on_BuyEMRC_clicked();
 
     void CalculateSellCostLabel();
     void on_Sell_Max_Amount_clicked();
     void on_SellBidcomboBox_currentIndexChanged(const QString &arg1);
-    void on_UnitsInputLUX_textChanged(const QString &arg1);
+    void on_UnitsInputEMRC_textChanged(const QString &arg1);
     void on_SellBidPriceEdit_textChanged(const QString &arg1);
-    void on_SellLUXBTN_clicked();
+    void on_SellEMRCBTN_clicked();
 
     void CalculateCSReceiveLabel();
     void on_CSUnitsInput_textChanged(const QString &arg1);
@@ -105,8 +105,8 @@ private slots:
     QString CryptopiaTimeStampToReadable(QString DateTime);
     QString CryptopiaIntegerTimeStampToReadable(int DateTime);
     QString CancelOrder(QString Orderid);
-    QString BuyLUX(QString OrderType, double Quantity, double Rate);
-    QString SellLUX(QString OrderType, double Quantity, double Rate);
+    QString BuyEMRC(QString OrderType, double Quantity, double Rate);
+    QString SellEMRC(QString OrderType, double Quantity, double Rate);
     QString Withdraw(double Amount, QString Address, QString Coin);
     void GetMarketHistory();
     QString GetMarketSummary();
@@ -116,8 +116,8 @@ private slots:
     QString GetBalance(QString Currency);
     QString GetDepositAddress();
     unsigned char* HMAC_SHA256_SIGNER(QString UrlToSign,QString Secretkey);
-    QString sendRequest(QString url, QString method = "GET", QString body = QString("{\"market\":\"LUX/BTC\"}"));// "{\"gender\":\"male\"}");
-    void sendRequest1(QString url, std::function<void (void)> funcForCallAfterReceiveResponse, QString method = "GET", QString body = QString("{\"market\":\"LUX/BTC\"}"));// "{\"gender\":\"male\"}");
+    QString sendRequest(QString url, QString method = "GET", QString body = QString("{\"market\":\"EMRC/BTC\"}"));// "{\"gender\":\"male\"}");
+    void sendRequest1(QString url, std::function<void (void)> funcForCallAfterReceiveResponse, QString method = "GET", QString body = QString("{\"market\":\"EMRC/BTC\"}"));// "{\"gender\":\"male\"}");
     //QString sendRequest(QString url);
     string encryptDecrypt(string toEncrypt, string password);
     char * base64(const unsigned char *input, int length);
@@ -143,4 +143,4 @@ private:
 
 };
 
-#endif //LUX_TRADINGDIALOG_H
+#endif //EMRC_TRADINGDIALOG_H

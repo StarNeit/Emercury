@@ -30,7 +30,7 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
-/** Utility functions used by the LUX Qt UI.
+/** Utility functions used by the EMRC Qt UI.
  */
 namespace GUIUtil
 {
@@ -38,7 +38,7 @@ namespace GUIUtil
 QString dateTimeStr(const QDateTime& datetime);
 QString dateTimeStr(qint64 nTime);
 
-// Render LUX addresses in monospace font
+// Render EMRC addresses in monospace font
 QFont bitcoinAddressFont();
 
 // Set up widgets for address and amounts
@@ -64,6 +64,8 @@ QString HtmlEscape(const std::string& str, bool fMultiLine = false);
        @see  TransactionView::copyLabel, TransactionView::copyAmount, TransactionView::copyAddress
      */
 void copyEntryData(QAbstractItemView* view, int column, int role = Qt::EditRole);
+
+    QString getEntryData(QAbstractItemView *view, int column, int role);
 
 void setClipboard(const QString& str);
 

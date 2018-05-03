@@ -1,6 +1,6 @@
 #!/bin/sh
 #-###############################################-#
-# C++ Cross-Compiler - The Luxcore Developer-2018 #
+# C++ Cross-Compiler - The Emercury Developer-2018 #
 #-###############################################-#
 
 # Set platform variables
@@ -37,16 +37,18 @@ cp -r "$LEVELDB_DIR/include/leveldb" "$INCLUDE_DIR"
 mkdir "$INCLUDE_DIR/leveldb/helpers"
 cp -r "$LEVELDB_DIR/helpers/memenv/memenv.h" "$INCLUDE_DIR/leveldb/helpers/memenv.h"
 cp ../src/config/implementation.hpp "$INCLUDE_DIR/boost/unordered/detail/implementation.hpp"
+cp ../src/config/condition_variable.hpp "$INCLUDE_DIR/boost/thread/win32/condition_variable.hpp"
 
 # Build eth dependencies
 cd ..
 ./autogen.sh Windows $PLATFORM $INSTALL_DIR
-./configure --prefix=$PWD/depends/$PLATFORM --host=$PLATFORM --disable-tests --disable-zmq
+./configure --prefix=$PWD/depends/$PLATFORM --host=$PLATFORM --disable-tests
 
 # Build the application
-make -j4 #&& make install
+make -j$(nproc)
 
 # Remove the symbols for release
 cd $INSTALL_DIR/bin
 /usr/bin/$PLATFORM-strip *
 cd $OLD_PATH
+

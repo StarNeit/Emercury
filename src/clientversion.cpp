@@ -13,7 +13,7 @@
  * for both luxd and lux-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Luxcore");
+const std::string CLIENT_NAME("Emercury");
 
 /**
  * Client version number

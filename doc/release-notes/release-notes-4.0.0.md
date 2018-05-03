@@ -1,4 +1,4 @@
-Luxcore version 4.0.0 is now available from:
+Emercury version 4.0.0 is now available from:
 
   <https://github.com/216k155/lux/releases>
 
@@ -12,19 +12,19 @@ Please report bugs using the issue tracker at github:
 Recommended Update
 ==============
 
-Luxcore v4.0.0 is a recommended, semi-mandatory update for all users. This release contains transaction creation bug fixes for zLUX spends, automint calculation adjustments, and other various updates/fixes.
+Emercury v4.0.0 is a recommended, semi-mandatory update for all users. This release contains transaction creation bug fixes for zEMRC spends, automint calculation adjustments, and other various updates/fixes.
 
-zLUX spending requires this update.
+zEMRC spending requires this update.
 
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/LUX-Qt (on Mac) or luxd/lux-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/EMRC-Qt (on Mac) or luxd/lux-qt (on Linux).
 
 Compatibility
 ==============
 
-Luxcore is extensively tested on multiple operating systems using
+Emercury is extensively tested on multiple operating systems using
 the Linux kernel, macOS 10.8+, and Windows Vista and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support),
@@ -32,7 +32,7 @@ No attempt is made to prevent installing or running the software on Windows XP, 
 can still do so at your own risk but be aware that there are known instabilities and issues.
 Please do not report issues about Windows XP to the issue tracker.
 
-Luxcore should also work on most other Unix-like systems but is not
+Emercury should also work on most other Unix-like systems but is not
 frequently tested on them.
 
 ### :exclamation::exclamation::exclamation: MacOS 10.13 High Sierra :exclamation::exclamation::exclamation:
@@ -45,21 +45,21 @@ Notable Changes
 
 Auto Wallet Backup
 ---------------------
-In addition to the automatic wallet backup that is done at each start of the client, a new automatic backup function has been added that will, by default, create a backup of the wallet file during each zLUX mint operation (zLUX spends which re-mint their change are also included in this). This functionality is controlled by the `-backupzlux` command-line option, which defaults to `1` (enabled, auto-backup).
+In addition to the automatic wallet backup that is done at each start of the client, a new automatic backup function has been added that will, by default, create a backup of the wallet file during each zEMRC mint operation (zEMRC spends which re-mint their change are also included in this). This functionality is controlled by the `-backupzlux` command-line option, which defaults to `1` (enabled, auto-backup).
 
 Users that wish to prevent this behavior (not recommended) can pass `-backupzlux=0` at the command-line when starting the client, or add `backupzlux=0` to their `lux.conf` file.
 
-zLUX Automint Calculations
+zEMRC Automint Calculations
 ---------------------
-A bug in the automint calculations was made apparent on mainnet when block times exceeded expectations, resulting in zLUX mint transactions that were in an unconfirmed state to still be treated as if they had never been minted. This caused automint to effectively mint more than what was intended.
+A bug in the automint calculations was made apparent on mainnet when block times exceeded expectations, resulting in zEMRC mint transactions that were in an unconfirmed state to still be treated as if they had never been minted. This caused automint to effectively mint more than what was intended.
 
-zLUX Spending Fix
+zEMRC Spending Fix
 ---------------------
-The size of zLUX spend transactions is knowingly larger than normal transactions, and while this was expected, a much stricter check against the scriptsig size is used for mainnet, causing the transactions to be rejected by the mempool, and thus not being packaged into any blocks.
+The size of zEMRC spend transactions is knowingly larger than normal transactions, and while this was expected, a much stricter check against the scriptsig size is used for mainnet, causing the transactions to be rejected by the mempool, and thus not being packaged into any blocks.
 
-zLUX Transaction Recovery
+zEMRC Transaction Recovery
 ---------------------
-Due to the aforementioned issue with zLUX spending, users may find that their attempted spends are now conflicted and zLUX balances are not represented as expected. "Recovery" of these transactions can be done using the following methods:
+Due to the aforementioned issue with zEMRC spending, users may find that their attempted spends are now conflicted and zEMRC balances are not represented as expected. "Recovery" of these transactions can be done using the following methods:
 
 1. GUI:
 
@@ -71,7 +71,7 @@ Due to the aforementioned issue with zLUX spending, users may find that their at
 
 RPC Changes
 ---------------------
-The `bip38decrypt` command has had it's parameter order changed to be more consistent with it's counterpart. The command now expects the LUX address as it's first parameter and the passphrase as it's second parameter.
+The `bip38decrypt` command has had it's parameter order changed to be more consistent with it's counterpart. The command now expects the EMRC address as it's first parameter and the passphrase as it's second parameter.
 
 Bip38 Compatibility With 3rd Party Tools
 ---------------------

@@ -11,6 +11,7 @@
 #include "primitives/block.h"
 #include "protocol.h"
 #include "uint256.h"
+#include "consensus/params.h"
 
 #include <vector>
 
@@ -23,7 +24,7 @@ struct CDNSSeedData {
 
 /**
  * CChainParams defines various tweakable parameters of a given instance of the
- * LUX system. There are three: the main network on which people trade goods
+ * EMRC system. There are three: the main network on which people trade goods
  * and services, the public test network which gets reset from time to time and
  * a regression test mode which is intended for private networks only. It has
  * minimal difficulty to ensure that blocks can be found instantly.
@@ -43,6 +44,7 @@ public:
     };
 
     const uint256& HashGenesisBlock() const { return hashGenesisBlock; }
+    const Consensus::Params& GetConsensus() const { return consensus; }
     const MessageStartChars& MessageStart() const { return pchMessageStart; }
     const std::vector<unsigned char>& AlertKey() const { return vAlertPubKey; }
     int GetDefaultPort() const { return nDefaultPort; }
@@ -101,6 +103,7 @@ protected:
     CChainParams() {}
 
     uint256 hashGenesisBlock;
+    Consensus::Params consensus;
     MessageStartChars pchMessageStart;
     //! Raw pub key bytes for the broadcast alert signing key.
     std::vector<unsigned char> vAlertPubKey;

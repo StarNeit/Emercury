@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The LUX developers
+// Copyright (c) 2015-2017 The EMRC developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -105,7 +105,7 @@ std::string to_internal(const std::string&);
 
 using namespace std;
 
-//LUX only features
+//EMRC only features
 bool fMasterNode = false;
 string strMasterNodePrivKey = "";
 string strMasterNodeAddr = "";
@@ -230,7 +230,7 @@ bool LogAcceptCategory(const char* category)
             const vector<string>& categories = mapMultiArgs["-debug"];
             ptrCategory.reset(new set<string>(categories.begin(), categories.end()));
             // thread_specific_ptr automatically deletes the set when the thread ends.
-            // "lux" is a composite category enabling all LUX-related debug output
+            // "lux" is a composite category enabling all EMRC-related debug output
             if (ptrCategory->count(string("lux"))) {
                 ptrCategory->insert(string("darksend"));
                 ptrCategory->insert(string("instantx"));
@@ -420,13 +420,13 @@ void PrintExceptionContinue(std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\LUX
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\LUX
-// Mac: ~/Library/Application Support/LUX
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\EMRC
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\EMRC
+// Mac: ~/Library/Application Support/EMRC
 // Unix: ~/.lux
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "LUX";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "EMRC";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -438,7 +438,7 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "LUX";
+    return pathRet / "EMRC";
 #else
     // Unix
     return pathRet / ".lux";

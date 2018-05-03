@@ -1,15 +1,15 @@
-![LUX Logo](https://github.com/216k155/lux/blob/master/src/qt/res/images/lux_logo_horizontal.png)
+![EMRC Logo](https://github.com/216k155/lux/blob/master/src/qt/res/images/lux_logo_horizontal.png)
 
 "Empowered By Intelligence"
 
-Luxcore is GNU AGPLv3 licensed.
+Emercury is GNU AGPLv3 licensed.
 
 [![Build Status](https://travis-ci.org/216k155/lux.svg?branch=master)](https://travis-ci.org/216k155/lux)
 <a href="https://discord.gg/27xFP5Y"><img src="https://discordapp.com/api/guilds/364500397999652866/embed.png" alt="Discord server" /></a>
 
 [![Build history](https://buildstats.info/travisci/chart/216k155/lux?branch=master)](https://travis-ci.org/216k155/lux?branch=master)
 
-[Website](https://luxcore.io) — [PoS Web Wallet]() — [Block Explorer](https://explorer.luxcore.io/) — [Blog](https://reddit.com/r/LUXCoin) — [Forum](https://bitcointalk.org/index.php?topic=2254046.0) — [Telegram](https://t.me/LUXcoinOfficialChat) — [Twitter](https://twitter.com/LUX_Coin)
+[Website](https://emercury.io) — [PoS Web Wallet]() — [Block Explorer](https://explorer.emercury.io/) — [Blog](https://reddit.com/r/EMRCCoin) — [Forum](https://bitcointalk.org/index.php?topic=2254046.0) — [Telegram](https://t.me/EMRCcoinOfficialChat) — [Twitter](https://twitter.com/EMRC_Coin)
 
 Features
 =============
@@ -21,13 +21,13 @@ Features
 * New PHI1612 PoW/PoS hybrid algorithm
 * Static PoS
 
-The Luxcore Project is a decentralized peer-to-peer banking financial platform, created under an open source license, featuring a built-in cryptocurrency, end-to-end encrypted messaging and decentralized marketplace. The decentralized network aims to provide anonymity and privacy for everyone through a simple user-friendly interface by taking care of all the advanced cryptography in the background.
+The Emercury Project is a decentralized peer-to-peer banking financial platform, created under an open source license, featuring a built-in cryptocurrency, end-to-end encrypted messaging and decentralized marketplace. The decentralized network aims to provide anonymity and privacy for everyone through a simple user-friendly interface by taking care of all the advanced cryptography in the background.
 
 The Luxgate allow for communications among validated blockchain with the ability to perform tasks and advanced functions. Through the use of Pmn, Lux is able to interact with many other popular blockchains and create a unifying bond among those ecosystems.
 
-Lux doesn't provide direct support for dapp database. Instead, a mechanism to interact with another Blockchain via Luxgate function where the other Blockchain can send and receive trigger function notices and international data through the Lux network via Parallel Masternode (Pmn) and Luxgate. Pmn & Luxgate can also be used to interact with the centralized services such as banker. Those centralism service can connect to the Lux network for specific trigger of the Luxgate via Pmn. It will allow for their developed autonomous system to act based on their behalf. The Pmn will then be developed by the connecting Blockchain developer. Luxcore will have to supply a deployment guide to assist their developer. In other to assist the Centralized services, Lux will need to provide a centralized trustworthy environments. So user have their trusted oversight to verify that the transactions are legitimate.
+Lux doesn't provide direct support for dapp database. Instead, a mechanism to interact with another Blockchain via Luxgate function where the other Blockchain can send and receive trigger function notices and international data through the Lux network via Parallel Masternode (Pmn) and Luxgate. Pmn & Luxgate can also be used to interact with the centralized services such as banker. Those centralism service can connect to the Lux network for specific trigger of the Luxgate via Pmn. It will allow for their developed autonomous system to act based on their behalf. The Pmn will then be developed by the connecting Blockchain developer. Emercury will have to supply a deployment guide to assist their developer. In other to assist the Centralized services, Lux will need to provide a centralized trustworthy environments. So user have their trusted oversight to verify that the transactions are legitimate.
 
-In addition, without Luxgate and Pmn, Bitcoin and Ethereum cannot interact with each other on the same Blockchain because the technology is incompatible. It is almost impossible before our Pmn and Luxgate functions are implemented. Therefore, we have to introduce a Smartcontract & Segwit features in the next release to verify that we succeed to combine those different technologies together to create a brand new unique features of LUX.
+In addition, without Luxgate and Pmn, Bitcoin and Ethereum cannot interact with each other on the same Blockchain because the technology is incompatible. It is almost impossible before our Pmn and Luxgate functions are implemented. Therefore, we have to introduce a Smartcontract & Segwit features in the next release to verify that we succeed to combine those different technologies together to create a brand new unique features of EMRC.
 
 ## Coin Specifications
 
@@ -36,10 +36,10 @@ In addition, without Luxgate and Pmn, Bitcoin and Ethereum cannot interact with 
 | Total Blocks | `6,000,000` |
 | Block Size | `4MB` |
 | Block Time | `60s` |
-| PoW Reward | `10 LUX` |
-| PoS Reward | `1 LUX` |
+| PoW Reward | `10 EMRC` |
+| PoS Reward | `1 EMRC` |
 | Stake Time | `36 hours` |
-| Masternode Requirement | `16,120 LUX` |
+| Masternode Requirement | `16,120 EMRC` |
 | Masternode Reward | `40% PoS Block ` |
 | Port | `26868` |
 | RPC Port | `9888` |
@@ -67,41 +67,26 @@ Ubuntu Xenial 16.04 and Windows Subsystem for Linux
 
 Once the tool chain is installed the build steps are common:
 
-Note that for WSL the Luxcore source path MUST be somewhere in the default mount file system, for example /usr/src/lux, AND not under /mnt/d/. If this is not the case the dependency autoconf scripts will fail. This means you cannot use a directory that located directly on the host Windows file system to perform the build.
+Note that for WSL the Emercury source path MUST be somewhere in the default mount file system, for example /usr/src/lux, AND not under /mnt/d/. If this is not the case the dependency autoconf scripts will fail. This means you cannot use a directory that located directly on the host Windows file system to perform the build.
 
 The next three steps are an example of how to acquire the source in an appropriate way.
 
     cd /usr/src
-    git clone https://github.com/216k155/lux.git --recursive
+    git clone https://github.com/216k155/lux.git
     sudo chmod -R a+rw lux
 
 Once the source code is ready the build steps are below.
 
-    PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g') # strip out problematic Windows %PATH% imported var
-    cd depends
-    make HOST=x86_64-w64-mingw32 -j$(nproc)
-    cd ..
-    ./autogen.sh # not required when building from tarball
-    CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site
-    ./configure --prefix=`pwd`/depends/x86_64-w64-mingw32 --disable-tests
-    make HOST=x86_64-w64-mingw32 -j$(nproc)
+    PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g')
+    cd lux/depends
+    ./build-wins.sh
 
 ### Build on Ubuntu
 
-    sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils git cmake libboost-all-dev
-    sudo apt-get install software-properties-common
-    sudo add-apt-repository ppa:bitcoin/bitcoin
-    sudo apt-get update
-    sudo apt-get install libdb4.8-dev libdb4.8++-dev
-
-    # If you want to build the Qt GUI:
-    sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler
-
-    git clone https://github.com/216k155/lux
+    git clone https://github.com/216k155/lux.git
 
     cd lux
-
-    # Note autogen will prompt to install some more dependencies if needed
+    ./install-dependencies.sh
     ./autogen.sh
     ./configure --disable-tests
     make -j$(nproc)
@@ -119,38 +104,29 @@ Install the OS X command line tools:
 
 When the popup appears, click `Install`.
 
-Then install [Homebrew](https://brew.sh).
+Then install [Homebrew](https://brew.sh)
+
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 #### Dependencies
 
-    brew install cmake automake berkeley-db4 leveldb libtool boost --c++11 --without-single --without-static miniupnpc openssl pkg-config protobuf qt5 libevent imagemagick --with-librsvg
+    brew install cmake automake berkeley-db4 leveldb libtool boost@1.66 --c++11 --without-single --without-static miniupnpc openssl pkg-config protobuf qt5 libevent imagemagick --with-librsvg
 
-NOTE: Building with Qt4 is still supported, however, could result in a broken UI. Building with Qt5 is recommended.
+Link boost 1.66
+    
+    brew link boost@1.66 --force
 
-#### Build Luxcore
+#### Build Emercury
 
-1. Clone the Lux source code and cd into `Lux`
+Clone the Lux source code and cd into lux
 
-        git clone --recursive https://github.com/216k155/lux.git
+        git clone https://github.com/216k155/lux.git
         cd lux
-
-2.  Build Luxcore:
-
-    Configure and build the headless Lux binaries as well as the GUI (if Qt is found).
-
-    You can disable the GUI build by passing `--without-gui` to configure.
-
+        export LDFLAGS=-L/usr/local/opt/openssl/lib;export CPPFLAGS=-I/usr/local/opt/openssl/include
         ./autogen.sh
-        ./configure --disable-tests
-        make
-
-3.  It is recommended to build and run the unit tests:
-
-        make check
-
-### Run
-
-Then you can either run the command-line daemon using `src/Luxd` and `src/Lux-cli`, or you can run the Qt GUI using `src/qt/Lux-qt`
+        ./configure --disable-tests 
+        make -j$(nproc)
+        make deploy
 
 Setup and Build: Arch Linux
 -----------------------------------

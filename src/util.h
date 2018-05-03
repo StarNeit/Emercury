@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto             -*- c++ -*-
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The LUX developers
+// Copyright (c) 2015-2017 The EMRC developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -29,7 +29,7 @@
 #include <boost/filesystem/path.hpp>
 #include <boost/thread/exceptions.hpp>
 
-//LUX only features
+//EMRC only features
 
 extern bool fMasterNode;
 extern bool fEnableInstanTX;
@@ -165,10 +165,18 @@ bool GetBoolArg(const std::string& strArg, bool fDefault);
 /**
  * Set an argument if it doesn't already have a value
  *
- * @param strArg Argument to set (e.g. "-foo")
+ CBlock block;
+    CBlockIndex* pblockindex =chainActive[nHeight];
+    std::string strHash =  pblockindex->GetBlockHash().GetHex();
+    uint256 hash(strHash);
+    CBlockIndex* pblockindex2 = mapBlockIndex[hash];
+    //  a.push_back();
+    return pblockindex2;
+} to set (e.g. "-foo")
  * @param strValue Value (e.g. "1")
  * @return true if argument gets set, false if it already had a value
  */
+
 bool SoftSetArg(const std::string& strArg, const std::string& strValue);
 
 /**
